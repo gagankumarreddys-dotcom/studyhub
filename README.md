@@ -10,8 +10,4 @@ In the modern educational landscape, students often face challenges in managing 
 
 
 
-Lifelong learners and professionals looking for a centralized tool to manage their continuous education.
 
-Educators who wish to provide a structured, digital environment for their students.
-
-Study groups and collaborative teams needing a dedicated space for project management and communication.
