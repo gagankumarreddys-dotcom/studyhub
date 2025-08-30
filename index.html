@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/png" href="Gemini_Generated_Image_avdxvbavdxvbavdx.png">
+    <style>
+        /* Modern CSS from sy.css */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .gradient-text {
+            background-image: linear-gradient(to right, #4a90e2, #50e3c2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .minimal-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .minimal-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .tool-card,
+        .material-item {
+            border-radius: 10px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tool-card:hover,
+        .material-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        .overflow-y-auto::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .overflow-y-auto::-webkit-scrollbar-thumb {
+            background-color: #d1d5db;
+            border-radius: 4px;
+        }
+
+        .overflow-y-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        /* Custom styles for the minimal card height */
+        .minimal-card.short {
+            min-height: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .todo-item {
+            position: relative;
+        }
+
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen py-8 px-4 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12 fade-in">
+            <h1 class="text-5xl font-bold gradient-text mb-3">Study Hub</h1>
+            <p class="text-gray-600 text-lg">"Ace Your Exams with the Right Resources"</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+
+            <div class="space-y-6">
+                <div class="minimal-card p-6 fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-tasks text-blue-500 mr-3"></i> Study Tasks
+                        </h2>
+                        <span class="bg-blue-100 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">5</span>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2">
+                            <input type="text" id="todoInput" placeholder="What needs to be done?"
+                                class="flex-1 p-3 border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-1 focus:ring-blue-200 transition-colors">
+                            <button onclick="addTodo()"
+                                class="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors shadow-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="todoList" class="space-y-3 max-h-72 overflow-y-auto"></div>
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center text-sm text-gray-600 mb-2">
+                            <span>Progress</span>
+                            <span id="progressPercentage">40%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-2">
+                            <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full transition-all duration-500"
+                                style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="minimal-card p-6 fade-in">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <i class="fas fa-toolbox text-green-500 mr-3"></i> Study Tools
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="pdf/cal.html" target="_blank"
+                            class="tool-card p-4 rounded-lg border border-gray-100 bg-white hover:border-blue-200 cursor-pointer transition-all">
+                            <div class="text-blue-500 text-xl mb-2 text-center">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <p class="text-sm font-medium text-center text-gray-700">Calculator</p>
+                        </a>
+                        <a href="https://matrixcalc.org/" target="_blank"
+                            class="tool-card p-4 rounded-lg border border-gray-100 bg-white hover:border-green-200 cursor-pointer transition-all">
+                            <div class="text-green-500 text-xl mb-2 text-center">
+                                <i class="fas fa-border-all"></i>
+                            </div>
+                            <p class="text-sm font-medium text-center text-gray-700">Matrix Calculator</p>
+                        </a>
+                        <a href="https://www.forum.universityupdates.in/threads/jntuh-study-materials-notes-important-questions.33519/#google_vignette"
+                            target="_blank"
+                            class="tool-card p-4 rounded-lg border border-gray-100 bg-white hover:border-purple-200 cursor-pointer transition-all">
+                            <div class="text-purple-500 text-xl mb-2 text-center">
+                                <i class="fas fa-sticky-note"></i>
+                            </div>
+                            <p class="text-sm font-medium text-center text-gray-700">Notes</p>
+                        </a>
+                        <a href="https://gemini.google.com/app" target="_blank"
+                            class="tool-card p-4 rounded-lg border border-gray-100 bg-white hover:border-blue-200 cursor-pointer transition-all">
+                            <div class="text-blue-500 text-xl mb-2 text-center">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <p class="text-sm font-medium text-center text-gray-700">Gemini AI</p>
+                        </a>
+                        <a href="https://www.forum.universityupdates.in/threads/jntuh-study-materials-notes-important-questions.33519/#google_vignette"
+                            target="_blank"
+                            class="tool-card p-4 rounded-lg border border-gray-100 bg-white hover:border-orange-200 cursor-pointer transition-all">
+                            <div class="text-orange-500 text-xl mb-2 text-center">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <p class="text-sm font-medium text-center text-gray-700">Resources</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="minimal-card p-6 fade-in short">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-book text-purple-500 mr-3"></i> Study Materials
+                    </h2>
+                </div>
+                <div class="space-y-4">
+                    <div
+                        class="material-item bg-white p-4 rounded-lg border border-gray-100 hover:border-blue-200 transition-colors">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-file-pdf text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">BEE</h3>
+                                <a href="pdf/BEE.pdf" target="_blank" download="BEE.pdf">
+                                    <p class="text-sm text-gray-600">Complete concept about BEE</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="material-item bg-white p-4 rounded-lg border border-gray-100 hover:border-green-200 transition-colors">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-file-alt text-green-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Mathematics</h3>
+                                <a href="pdf/Mathematics-I (2).pdf" download="Mathematics-I.pdf" target="_blank">
+                                    <p class="text-sm text-gray-600">Calculus and linear algebra</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="material-item bg-white p-4 rounded-lg border border-gray-100 hover:border-green-200 transition-colors">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-file-alt text-green-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">C programming</h3>
+                                <a href="pdf/CP_2.pdf" download="C-Programming.pdf" target="_blank">
+                                    <p class="text-sm text-gray-600">complete c programming</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="material-item bg-white p-4 rounded-lg border border-gray-100 hover:border-green-200 transition-colors">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-file-alt text-green-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Applied physics</h3>
+                                <a href="pdf/Applied-Physics.pdf" target="_blank" download="Applied-Physics.pdf">
+                                    <p class="text-sm text-gray-600">Calculus and Applied physics</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                </div>
+            </div>
+
+            <div class="minimal-card p-6 fade-in short">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-book-reader text-red-500 mr-3"></i> video lectures
+                </h2>
+                <div class="space-y-4">
+                    <a href="https://www.youtube.com/playlist?list=PLU6SqdYcYsfLPxjd-k-MaoG7qgRQ-2fKc" target="_blank"
+                        class="block p-4 rounded-lg border border-gray-100 bg-white hover:border-green-200 transition-colors">
+                        <h3 class="font-semibold text-gray-800">Mathematics</h3>
+                        <p class="text-sm text-gray-600">Master calculus, algebra, and more</p>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLmAmHQ-_5ySzJrY5XlO0SPdQneyhr9v0B" target="_blank"
+                        class="block p-4 rounded-lg border border-gray-100 bg-white hover:border-purple-200 transition-colors">
+                        <h3 class="font-semibold text-gray-800">BEE</h3>
+                        <p class="text-sm text-gray-600">Basics of Electrical Engineering</p>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=aZb0iu4uGwA" target="_blank"
+                        class="block p-4 rounded-lg border border-gray-100 bg-white hover:border-purple-200 transition-colors">
+                        <h3 class="font-semibold text-gray-800">Applied physics</h3>
+                        <p class="text-sm text-gray-600">complete applied physics</p>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=aZb0iu4uGwA" target="_blank"
+                        class="block p-4 rounded-lg border border-gray-100 bg-white hover:border-orange-200 transition-colors">
+                        <h3 class="font-semibold text-gray-800">C Programming</h3>
+                        <p class="text-sm text-gray-600">Learn fundamentals of programming</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-12 py-6 border-t border-gray-200 text-center text-gray-600 text-sm">
+            © 2025 Study Hub. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        let todos = [{
+            id: 1,
+            text: "Mathematics",
+            completed: false
+        }, {
+            id: 2,
+            text: "Applied physics",
+            completed: false
+        }, {
+            id: 3,
+            text: "C programming",
+            completed: true
+        }, {
+            id: 4,
+            text: "BEE",
+            completed: false
+        }, ];
+
+        function renderTodos() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = '';
+            todos.forEach(todo => {
+                const todoItem = document.createElement('div');
+                todoItem.className = `todo-item flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100 hover:border-gray-200 transition-colors ${todo.completed ? 'completed' : ''}`;
+                todoItem.innerHTML = `
+            <div class="flex items-center">
+              <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${todo.id})" class="mr-3 h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-400">
+              <span class="text-gray-700">${todo.text}</span>
+            </div>
+            <button onclick="removeTodo(${todo.id})" class="text-gray-400 hover:text-red-500 transition-colors">
+              <i class="fas fa-times"></i>
+            </button>
+        `;
+                todoList.appendChild(todoItem);
+            });
+            updateProgress();
+        }
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (text) {
+                todos.unshift({
+                    id: Date.now(),
+                    text: text,
+                    completed: false
+                });
+                input.value = '';
+                renderTodos();
+            }
+        }
+
+        function toggleTodo(id) {
+            todos = todos.map(todo => todo.id === id ? {
+                ...todo,
+                completed: !todo.completed
+            } : todo);
+            renderTodos();
+        }
+
+        function removeTodo(id) {
+            todos = todos.filter(todo => todo.id !== id);
+            renderTodos();
+        }
+
+        function updateProgress() {
+            const total = todos.length;
+            const completed = todos.filter(todo => todo.completed).length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            document.querySelector('.progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progressPercentage').textContent = `${percentage}%`;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTodos);
+    </script>
+</body>
+</html>
